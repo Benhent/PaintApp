@@ -79,7 +79,7 @@
             pictureBox33 = new PictureBox();
             pictureBox34 = new PictureBox();
             tabPage2 = new TabPage();
-            panel1 = new Panel();
+            drawPanel = new Panel();
             tableLayoutPanel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -220,6 +220,7 @@
             tool_pencil.Size = new Size(42, 37);
             tool_pencil.TabIndex = 2;
             tool_pencil.TabStop = false;
+            tool_pencil.Click += tool_pencil_Click;
             // 
             // tool_bucket
             // 
@@ -252,6 +253,7 @@
             tool_eraser.Size = new Size(42, 38);
             tool_eraser.TabIndex = 5;
             tool_eraser.TabStop = false;
+            tool_eraser.Click += tool_eraser_Click;
             // 
             // tool_picker
             // 
@@ -514,6 +516,7 @@
             pictureBox15.Size = new Size(27, 27);
             pictureBox15.TabIndex = 0;
             pictureBox15.TabStop = false;
+            pictureBox15.Click += pictureBox15_Click;
             // 
             // pictureBox16
             // 
@@ -524,6 +527,7 @@
             pictureBox16.Size = new Size(27, 27);
             pictureBox16.TabIndex = 1;
             pictureBox16.TabStop = false;
+            pictureBox16.Click += pictureBox16_Click;
             // 
             // pictureBox17
             // 
@@ -597,11 +601,14 @@
             // 
             // pictureBox24
             // 
+            pictureBox24.BackgroundImage = Properties.Resources.Line;
+            pictureBox24.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox24.Location = new Point(69, 36);
             pictureBox24.Name = "pictureBox24";
             pictureBox24.Size = new Size(27, 27);
             pictureBox24.TabIndex = 9;
             pictureBox24.TabStop = false;
+            pictureBox24.Click += pictureBox24_Click;
             // 
             // pictureBox25
             // 
@@ -693,21 +700,25 @@
             tabPage2.Text = "File";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // drawPanel
             // 
-            panel1.BackColor = SystemColors.ControlLightLight;
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 135);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(784, 326);
-            panel1.TabIndex = 1;
+            drawPanel.BackColor = SystemColors.ControlLightLight;
+            drawPanel.Dock = DockStyle.Fill;
+            drawPanel.Location = new Point(0, 135);
+            drawPanel.Name = "drawPanel";
+            drawPanel.Size = new Size(784, 326);
+            drawPanel.TabIndex = 1;
+            drawPanel.Paint += drawPanel_Paint;
+            drawPanel.MouseDown += drawPanel_MouseDown;
+            drawPanel.MouseMove += drawPanel_MouseMove;
+            drawPanel.MouseUp += drawPanel_MouseUp;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 461);
-            Controls.Add(panel1);
+            Controls.Add(drawPanel);
             Controls.Add(tableLayoutPanel1);
             MinimumSize = new Size(800, 500);
             Name = "Form1";
@@ -768,7 +779,7 @@
         #endregion
 
         private TableLayoutPanel tableLayoutPanel1;
-        private Panel panel1;
+        private Panel drawPanel;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
