@@ -97,32 +97,10 @@
 
         private void pictureBox15_Click(object sender, EventArgs e)
         {
-            index = 4;
         }
 
         private void pictureBox24_Click(object sender, EventArgs e)
         {
-            index = 5;
-        }
-
-        private void drawPanel_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-            if (drawing)
-            {
-                if (index == 3)
-                {
-                    g.DrawEllipse(pen, cx, cy, sx, sy);
-                }
-                if (index == 4)
-                {
-                    g.DrawRectangle(pen, cx, cy, sx, sy);
-                }
-                if (index == 5)
-                {
-                    g.DrawLine(pen, cx, cy, x, y);
-                }
-            }
         }
     }
 }
