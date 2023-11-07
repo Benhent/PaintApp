@@ -81,6 +81,11 @@
             pictureBox33 = new PictureBox();
             pictureBox34 = new PictureBox();
             tabPage2 = new TabPage();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            pictureBox15 = new PictureBox();
+            pictureBox16 = new PictureBox();
+            pictureBox24 = new PictureBox();
+            pictureBox35 = new PictureBox();
             drawPanel = new Panel();
             imageList1 = new ImageList(components);
             tableLayoutPanel1.SuspendLayout();
@@ -133,6 +138,12 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox32).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox33).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox34).BeginInit();
+            tabPage2.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox24).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox35).BeginInit();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -145,7 +156,7 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(784, 135);
+            tableLayoutPanel1.Size = new Size(1484, 135);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tabControl1
@@ -156,7 +167,7 @@
             tabControl1.Location = new Point(3, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(778, 129);
+            tabControl1.Size = new Size(1478, 129);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -165,7 +176,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(770, 101);
+            tabPage1.Size = new Size(1470, 101);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Home";
             tabPage1.UseVisualStyleBackColor = true;
@@ -189,7 +200,7 @@
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.Size = new Size(764, 95);
+            tableLayoutPanel2.Size = new Size(1464, 95);
             tableLayoutPanel2.TabIndex = 0;
             // 
             // tableTool
@@ -210,7 +221,7 @@
             tableTool.RowCount = 2;
             tableTool.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableTool.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableTool.Size = new Size(134, 87);
+            tableTool.Size = new Size(402, 87);
             tableTool.TabIndex = 1;
             // 
             // tool_pencil
@@ -219,7 +230,7 @@
             tool_pencil.BackgroundImage = Properties.Resources.pencil;
             tool_pencil.BackgroundImageLayout = ImageLayout.Stretch;
             tool_pencil.Cursor = Cursors.Hand;
-            tool_pencil.Location = new Point(3, 3);
+            tool_pencil.Location = new Point(92, 3);
             tool_pencil.Name = "tool_pencil";
             tool_pencil.Size = new Size(38, 37);
             tool_pencil.TabIndex = 2;
@@ -232,7 +243,7 @@
             tool_bucket.BackgroundImage = Properties.Resources.paint_bucket;
             tool_bucket.BackgroundImageLayout = ImageLayout.Stretch;
             tool_bucket.Cursor = Cursors.Hand;
-            tool_bucket.Location = new Point(47, 3);
+            tool_bucket.Location = new Point(180, 3);
             tool_bucket.Name = "tool_bucket";
             tool_bucket.Size = new Size(38, 37);
             tool_bucket.TabIndex = 3;
@@ -244,7 +255,7 @@
             tool_text.BackgroundImage = Properties.Resources.text;
             tool_text.BackgroundImageLayout = ImageLayout.Stretch;
             tool_text.Cursor = Cursors.Hand;
-            tool_text.Location = new Point(91, 3);
+            tool_text.Location = new Point(269, 3);
             tool_text.Name = "tool_text";
             tool_text.Size = new Size(40, 37);
             tool_text.TabIndex = 4;
@@ -256,7 +267,7 @@
             tool_eraser.BackgroundImage = Properties.Resources.eraser;
             tool_eraser.BackgroundImageLayout = ImageLayout.Stretch;
             tool_eraser.Cursor = Cursors.Hand;
-            tool_eraser.Location = new Point(3, 46);
+            tool_eraser.Location = new Point(92, 46);
             tool_eraser.Name = "tool_eraser";
             tool_eraser.Size = new Size(38, 38);
             tool_eraser.TabIndex = 5;
@@ -269,7 +280,7 @@
             tool_picker.BackgroundImage = Properties.Resources.color_picker;
             tool_picker.BackgroundImageLayout = ImageLayout.Stretch;
             tool_picker.Cursor = Cursors.Hand;
-            tool_picker.Location = new Point(47, 46);
+            tool_picker.Location = new Point(180, 46);
             tool_picker.Name = "tool_picker";
             tool_picker.Size = new Size(38, 38);
             tool_picker.TabIndex = 6;
@@ -280,7 +291,7 @@
             tool_zoom.BackgroundImage = Properties.Resources.loupe;
             tool_zoom.BackgroundImageLayout = ImageLayout.Stretch;
             tool_zoom.Cursor = Cursors.Hand;
-            tool_zoom.Location = new Point(91, 46);
+            tool_zoom.Location = new Point(269, 46);
             tool_zoom.Name = "tool_zoom";
             tool_zoom.Size = new Size(40, 38);
             tool_zoom.TabIndex = 7;
@@ -292,7 +303,7 @@
             PenSize.DrawMode = DrawMode.OwnerDrawFixed;
             PenSize.FormattingEnabled = true;
             PenSize.Items.AddRange(new object[] { "2px", "4px", "6px", "8px", "10px" });
-            PenSize.Location = new Point(371, 35);
+            PenSize.Location = new Point(1071, 35);
             PenSize.Name = "PenSize";
             PenSize.Size = new Size(142, 24);
             PenSize.TabIndex = 2;
@@ -302,7 +313,7 @@
             // 
             // splitContainer1
             // 
-            splitContainer1.Location = new Point(520, 4);
+            splitContainer1.Location = new Point(1220, 4);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -371,6 +382,7 @@
             pictureBox14.Size = new Size(55, 50);
             pictureBox14.TabIndex = 12;
             pictureBox14.TabStop = false;
+            pictureBox14.Click += pictureBox14_Click;
             // 
             // pictureBox13
             // 
@@ -528,9 +540,9 @@
             flowLayoutPanel1.Controls.Add(pictureBox32);
             flowLayoutPanel1.Controls.Add(pictureBox33);
             flowLayoutPanel1.Controls.Add(pictureBox34);
-            flowLayoutPanel1.Location = new Point(145, 4);
+            flowLayoutPanel1.Location = new Point(413, 4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(219, 87);
+            flowLayoutPanel1.Size = new Size(651, 87);
             flowLayoutPanel1.TabIndex = 4;
             // 
             // sh_hcn
@@ -599,7 +611,7 @@
             // 
             pictureBox21.BackgroundImage = Properties.Resources.triangle;
             pictureBox21.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox21.Location = new Point(3, 36);
+            pictureBox21.Location = new Point(201, 3);
             pictureBox21.Name = "pictureBox21";
             pictureBox21.Size = new Size(27, 27);
             pictureBox21.TabIndex = 6;
@@ -609,7 +621,7 @@
             // 
             pictureBox22.BackgroundImage = Properties.Resources.rectangle_round;
             pictureBox22.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox22.Location = new Point(36, 36);
+            pictureBox22.Location = new Point(234, 3);
             pictureBox22.Name = "pictureBox22";
             pictureBox22.Size = new Size(27, 27);
             pictureBox22.TabIndex = 7;
@@ -619,7 +631,7 @@
             // 
             pictureBox23.BackgroundImage = Properties.Resources.heart;
             pictureBox23.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox23.Location = new Point(69, 36);
+            pictureBox23.Location = new Point(267, 3);
             pictureBox23.Name = "pictureBox23";
             pictureBox23.Size = new Size(27, 27);
             pictureBox23.TabIndex = 8;
@@ -629,7 +641,7 @@
             // 
             sh_line.BackgroundImage = Properties.Resources.Line;
             sh_line.BackgroundImageLayout = ImageLayout.Stretch;
-            sh_line.Location = new Point(102, 36);
+            sh_line.Location = new Point(300, 3);
             sh_line.Name = "sh_line";
             sh_line.Size = new Size(27, 27);
             sh_line.TabIndex = 9;
@@ -638,7 +650,7 @@
             // 
             // pictureBox25
             // 
-            pictureBox25.Location = new Point(135, 36);
+            pictureBox25.Location = new Point(333, 3);
             pictureBox25.Name = "pictureBox25";
             pictureBox25.Size = new Size(27, 27);
             pictureBox25.TabIndex = 10;
@@ -646,7 +658,7 @@
             // 
             // pictureBox26
             // 
-            pictureBox26.Location = new Point(168, 36);
+            pictureBox26.Location = new Point(366, 3);
             pictureBox26.Name = "pictureBox26";
             pictureBox26.Size = new Size(27, 27);
             pictureBox26.TabIndex = 11;
@@ -654,7 +666,7 @@
             // 
             // pictureBox27
             // 
-            pictureBox27.Location = new Point(3, 69);
+            pictureBox27.Location = new Point(399, 3);
             pictureBox27.Name = "pictureBox27";
             pictureBox27.Size = new Size(27, 27);
             pictureBox27.TabIndex = 12;
@@ -662,7 +674,7 @@
             // 
             // pictureBox28
             // 
-            pictureBox28.Location = new Point(36, 69);
+            pictureBox28.Location = new Point(432, 3);
             pictureBox28.Name = "pictureBox28";
             pictureBox28.Size = new Size(27, 27);
             pictureBox28.TabIndex = 13;
@@ -670,7 +682,7 @@
             // 
             // pictureBox29
             // 
-            pictureBox29.Location = new Point(69, 69);
+            pictureBox29.Location = new Point(465, 3);
             pictureBox29.Name = "pictureBox29";
             pictureBox29.Size = new Size(27, 27);
             pictureBox29.TabIndex = 14;
@@ -678,7 +690,7 @@
             // 
             // pictureBox30
             // 
-            pictureBox30.Location = new Point(102, 69);
+            pictureBox30.Location = new Point(498, 3);
             pictureBox30.Name = "pictureBox30";
             pictureBox30.Size = new Size(27, 27);
             pictureBox30.TabIndex = 15;
@@ -686,7 +698,7 @@
             // 
             // pictureBox31
             // 
-            pictureBox31.Location = new Point(135, 69);
+            pictureBox31.Location = new Point(531, 3);
             pictureBox31.Name = "pictureBox31";
             pictureBox31.Size = new Size(27, 27);
             pictureBox31.TabIndex = 16;
@@ -694,7 +706,7 @@
             // 
             // pictureBox32
             // 
-            pictureBox32.Location = new Point(168, 69);
+            pictureBox32.Location = new Point(564, 3);
             pictureBox32.Name = "pictureBox32";
             pictureBox32.Size = new Size(27, 27);
             pictureBox32.TabIndex = 17;
@@ -702,7 +714,7 @@
             // 
             // pictureBox33
             // 
-            pictureBox33.Location = new Point(3, 102);
+            pictureBox33.Location = new Point(597, 3);
             pictureBox33.Name = "pictureBox33";
             pictureBox33.Size = new Size(27, 27);
             pictureBox33.TabIndex = 18;
@@ -710,7 +722,7 @@
             // 
             // pictureBox34
             // 
-            pictureBox34.Location = new Point(36, 102);
+            pictureBox34.Location = new Point(3, 36);
             pictureBox34.Name = "pictureBox34";
             pictureBox34.Size = new Size(27, 27);
             pictureBox34.TabIndex = 19;
@@ -718,23 +730,96 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(tableLayoutPanel3);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(770, 101);
+            tabPage2.Size = new Size(1470, 101);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "File";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 4;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel3.Controls.Add(pictureBox15, 0, 0);
+            tableLayoutPanel3.Controls.Add(pictureBox16, 1, 0);
+            tableLayoutPanel3.Controls.Add(pictureBox24, 2, 0);
+            tableLayoutPanel3.Controls.Add(pictureBox35, 3, 0);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(3, 3);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.Size = new Size(1464, 95);
+            tableLayoutPanel3.TabIndex = 0;
+            // 
+            // pictureBox15
+            // 
+            pictureBox15.BackgroundImage = Properties.Resources.add;
+            pictureBox15.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox15.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox15.Cursor = Cursors.Hand;
+            pictureBox15.Dock = DockStyle.Fill;
+            pictureBox15.Location = new Point(3, 3);
+            pictureBox15.Name = "pictureBox15";
+            pictureBox15.Size = new Size(360, 89);
+            pictureBox15.TabIndex = 0;
+            pictureBox15.TabStop = false;
+            // 
+            // pictureBox16
+            // 
+            pictureBox16.BackgroundImage = Properties.Resources.folder;
+            pictureBox16.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox16.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox16.Cursor = Cursors.Hand;
+            pictureBox16.Dock = DockStyle.Fill;
+            pictureBox16.Location = new Point(369, 3);
+            pictureBox16.Name = "pictureBox16";
+            pictureBox16.Size = new Size(360, 89);
+            pictureBox16.TabIndex = 1;
+            pictureBox16.TabStop = false;
+            // 
+            // pictureBox24
+            // 
+            pictureBox24.BackgroundImage = Properties.Resources.floppy_disk;
+            pictureBox24.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox24.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox24.Cursor = Cursors.Hand;
+            pictureBox24.Dock = DockStyle.Fill;
+            pictureBox24.Location = new Point(735, 3);
+            pictureBox24.Name = "pictureBox24";
+            pictureBox24.Size = new Size(360, 89);
+            pictureBox24.TabIndex = 2;
+            pictureBox24.TabStop = false;
+            // 
+            // pictureBox35
+            // 
+            pictureBox35.BackgroundImage = Properties.Resources.emergency_exit;
+            pictureBox35.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox35.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox35.Cursor = Cursors.Hand;
+            pictureBox35.Dock = DockStyle.Fill;
+            pictureBox35.Location = new Point(1101, 3);
+            pictureBox35.Name = "pictureBox35";
+            pictureBox35.Size = new Size(360, 89);
+            pictureBox35.TabIndex = 3;
+            pictureBox35.TabStop = false;
             // 
             // drawPanel
             // 
             drawPanel.AutoScroll = true;
             drawPanel.AutoSize = true;
+            drawPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             drawPanel.BackColor = SystemColors.ControlLightLight;
             drawPanel.Dock = DockStyle.Fill;
             drawPanel.Location = new Point(0, 135);
             drawPanel.Name = "drawPanel";
-            drawPanel.Size = new Size(784, 326);
+            drawPanel.Size = new Size(1484, 726);
             drawPanel.TabIndex = 1;
             drawPanel.Paint += drawPanel_Paint;
             drawPanel.MouseClick += drawPanel_MouseClick;
@@ -759,12 +844,15 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(784, 461);
+            ClientSize = new Size(1484, 861);
             Controls.Add(drawPanel);
             Controls.Add(tableLayoutPanel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(800, 500);
             Name = "Form1";
-            Text = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Paint App";
+            WindowState = FormWindowState.Maximized;
             tableLayoutPanel1.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
@@ -815,6 +903,12 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox32).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox33).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox34).EndInit();
+            tabPage2.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox24).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox35).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -874,5 +968,10 @@
         private PictureBox pictureBox33;
         private PictureBox pictureBox34;
         private ImageList imageList1;
+        private TableLayoutPanel tableLayoutPanel3;
+        private PictureBox pictureBox15;
+        private PictureBox pictureBox16;
+        private PictureBox pictureBox24;
+        private PictureBox pictureBox35;
     }
 }

@@ -1,7 +1,11 @@
-﻿namespace PaintApp
+﻿using System.Drawing;
+using System.Drawing.Drawing2D;
+
+namespace PaintApp
 {
     public partial class Form1 : Form
     {
+        Bitmap bm;
         Graphics g;
         bool drawing = false;
         Point startPoint;  // điểm bắt đầu vẽ
@@ -24,7 +28,9 @@
         public Form1()
         {
             InitializeComponent();
-
+            bm = new Bitmap(drawPanel.Width, drawPanel.Height);
+            g = Graphics.FromImage(bm);
+            drawPanel.BackgroundImage = bm;
             g = drawPanel.CreateGraphics();
             g.Clear(Color.White);
 
@@ -139,9 +145,6 @@
                 case 9:
                     this.Cursor = Cursors.Cross;
                     break;
-                default:
-                    this.Cursor = Cursors.Default;
-                    break;
             }
         }
 
@@ -167,6 +170,14 @@
                 {
                     g.DrawLine(pen, cx, cy, x, y);
                 }
+            }
+        }
+
+        private void drawPanel_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (index == 3)
+            {
+
             }
         }
         //----------------------------------------------------------------
@@ -210,6 +221,7 @@
             pictureBox.BorderStyle = BorderStyle.FixedSingle;
         }
 
+
         private void tool_bucket_Click(object sender, EventArgs e)  // tô màu nền
         {
 
@@ -243,11 +255,6 @@
         {
             index = 9;
             ResetPictureBoxColors();
-        }
-
-        private void drawPanel_MouseClick(object sender, MouseEventArgs e)
-        {
-
         }
         //----------------------------------------------------------------
 
@@ -469,6 +476,21 @@
             if (pictureBox1 != null)
             {
                 pictureBox1.BackColor = p.BackColor;
+            }
+        }
+
+        private void pictureBox14_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();     // Mở một hộp thoại màu để cho người dùng chọn màu muốn tô
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                Color selectedColor = colorDialog.Color;
+
+                // Đặt màu cho bút vẽ
+                pen.Color = selectedColor;
+
+                // Đặt màu cho pictureBox1
+                pictureBox1.BackColor = selectedColor;
             }
         }
         //----------------------------------------------------------------
