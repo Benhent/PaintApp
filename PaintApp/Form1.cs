@@ -1,5 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using static System.Windows.Forms.DataFormats;
 
 namespace PaintApp
 {
@@ -496,5 +498,43 @@ namespace PaintApp
         //----------------------------------------------------------------
 
 
+
+
+        //---------------------------FILE---------------------------------
+        //save------------------------------------------------------------
+        private void savefile_Click(object sender, EventArgs e)
+        {
+            var sfd = new SaveFileDialog();
+            sfd.Filter = "Image(*.jpg) |*.jpg|(*.*|*.*";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap btm = bm.Clone(new Rectangle(0, 0, drawPanel.Width, drawPanel.Height), bm.PixelFormat);
+                btm.Save(sfd.FileName, ImageFormat.Jpeg);
+            }
+        }
+
+        private void exitfile_Click(object sender, EventArgs e)
+        {
+            index = 10;
+            Close();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(index == 10)
+            {
+                if (drawPanel != null)
+                {
+                    if (MessageBox.Show("Bạn có muốn lưu file", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Cancel)
+                        e.Cancel = true;
+                }
+                else
+                {
+                    if (MessageBox.Show("Bạn muốn thoát chương trình", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Cancel)
+                        e.Cancel = true;
+                }
+            }
+        }
+        //-------------------------------------------------------------------
     }
 }

@@ -82,12 +82,13 @@
             pictureBox34 = new PictureBox();
             tabPage2 = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
-            pictureBox15 = new PictureBox();
-            pictureBox16 = new PictureBox();
-            pictureBox24 = new PictureBox();
-            pictureBox35 = new PictureBox();
+            newfile = new PictureBox();
+            openfile = new PictureBox();
+            savefile = new PictureBox();
+            exitfile = new PictureBox();
             drawPanel = new Panel();
             imageList1 = new ImageList(components);
+            saveFileDialog1 = new SaveFileDialog();
             tableLayoutPanel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -140,10 +141,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox34).BeginInit();
             tabPage2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox24).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox35).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)newfile).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)openfile).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)savefile).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)exitfile).BeginInit();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -746,10 +747,10 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel3.Controls.Add(pictureBox15, 0, 0);
-            tableLayoutPanel3.Controls.Add(pictureBox16, 1, 0);
-            tableLayoutPanel3.Controls.Add(pictureBox24, 2, 0);
-            tableLayoutPanel3.Controls.Add(pictureBox35, 3, 0);
+            tableLayoutPanel3.Controls.Add(newfile, 0, 0);
+            tableLayoutPanel3.Controls.Add(openfile, 1, 0);
+            tableLayoutPanel3.Controls.Add(savefile, 2, 0);
+            tableLayoutPanel3.Controls.Add(exitfile, 3, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(3, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -758,57 +759,59 @@
             tableLayoutPanel3.Size = new Size(1464, 95);
             tableLayoutPanel3.TabIndex = 0;
             // 
-            // pictureBox15
+            // newfile
             // 
-            pictureBox15.BackgroundImage = Properties.Resources.add;
-            pictureBox15.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox15.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox15.Cursor = Cursors.Hand;
-            pictureBox15.Dock = DockStyle.Fill;
-            pictureBox15.Location = new Point(3, 3);
-            pictureBox15.Name = "pictureBox15";
-            pictureBox15.Size = new Size(360, 89);
-            pictureBox15.TabIndex = 0;
-            pictureBox15.TabStop = false;
+            newfile.BackgroundImage = Properties.Resources.add;
+            newfile.BackgroundImageLayout = ImageLayout.Center;
+            newfile.BorderStyle = BorderStyle.FixedSingle;
+            newfile.Cursor = Cursors.Hand;
+            newfile.Dock = DockStyle.Fill;
+            newfile.Location = new Point(3, 3);
+            newfile.Name = "newfile";
+            newfile.Size = new Size(360, 89);
+            newfile.TabIndex = 0;
+            newfile.TabStop = false;
             // 
-            // pictureBox16
+            // openfile
             // 
-            pictureBox16.BackgroundImage = Properties.Resources.folder;
-            pictureBox16.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox16.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox16.Cursor = Cursors.Hand;
-            pictureBox16.Dock = DockStyle.Fill;
-            pictureBox16.Location = new Point(369, 3);
-            pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(360, 89);
-            pictureBox16.TabIndex = 1;
-            pictureBox16.TabStop = false;
+            openfile.BackgroundImage = Properties.Resources.folder;
+            openfile.BackgroundImageLayout = ImageLayout.Center;
+            openfile.BorderStyle = BorderStyle.FixedSingle;
+            openfile.Cursor = Cursors.Hand;
+            openfile.Dock = DockStyle.Fill;
+            openfile.Location = new Point(369, 3);
+            openfile.Name = "openfile";
+            openfile.Size = new Size(360, 89);
+            openfile.TabIndex = 1;
+            openfile.TabStop = false;
             // 
-            // pictureBox24
+            // savefile
             // 
-            pictureBox24.BackgroundImage = Properties.Resources.floppy_disk;
-            pictureBox24.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox24.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox24.Cursor = Cursors.Hand;
-            pictureBox24.Dock = DockStyle.Fill;
-            pictureBox24.Location = new Point(735, 3);
-            pictureBox24.Name = "pictureBox24";
-            pictureBox24.Size = new Size(360, 89);
-            pictureBox24.TabIndex = 2;
-            pictureBox24.TabStop = false;
+            savefile.BackgroundImage = Properties.Resources.floppy_disk;
+            savefile.BackgroundImageLayout = ImageLayout.Center;
+            savefile.BorderStyle = BorderStyle.FixedSingle;
+            savefile.Cursor = Cursors.Hand;
+            savefile.Dock = DockStyle.Fill;
+            savefile.Location = new Point(735, 3);
+            savefile.Name = "savefile";
+            savefile.Size = new Size(360, 89);
+            savefile.TabIndex = 2;
+            savefile.TabStop = false;
+            savefile.Click += savefile_Click;
             // 
-            // pictureBox35
+            // exitfile
             // 
-            pictureBox35.BackgroundImage = Properties.Resources.emergency_exit;
-            pictureBox35.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox35.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox35.Cursor = Cursors.Hand;
-            pictureBox35.Dock = DockStyle.Fill;
-            pictureBox35.Location = new Point(1101, 3);
-            pictureBox35.Name = "pictureBox35";
-            pictureBox35.Size = new Size(360, 89);
-            pictureBox35.TabIndex = 3;
-            pictureBox35.TabStop = false;
+            exitfile.BackgroundImage = Properties.Resources.emergency_exit;
+            exitfile.BackgroundImageLayout = ImageLayout.Center;
+            exitfile.BorderStyle = BorderStyle.FixedSingle;
+            exitfile.Cursor = Cursors.Hand;
+            exitfile.Dock = DockStyle.Fill;
+            exitfile.Location = new Point(1101, 3);
+            exitfile.Name = "exitfile";
+            exitfile.Size = new Size(360, 89);
+            exitfile.TabIndex = 3;
+            exitfile.TabStop = false;
+            exitfile.Click += exitfile_Click;
             // 
             // drawPanel
             // 
@@ -852,7 +855,7 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Paint App";
-            WindowState = FormWindowState.Maximized;
+            FormClosing += Form1_FormClosing;
             tableLayoutPanel1.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
@@ -905,10 +908,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox34).EndInit();
             tabPage2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox24).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox35).EndInit();
+            ((System.ComponentModel.ISupportInitialize)newfile).EndInit();
+            ((System.ComponentModel.ISupportInitialize)openfile).EndInit();
+            ((System.ComponentModel.ISupportInitialize)savefile).EndInit();
+            ((System.ComponentModel.ISupportInitialize)exitfile).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -969,9 +972,10 @@
         private PictureBox pictureBox34;
         private ImageList imageList1;
         private TableLayoutPanel tableLayoutPanel3;
-        private PictureBox pictureBox15;
-        private PictureBox pictureBox16;
-        private PictureBox pictureBox24;
-        private PictureBox pictureBox35;
+        private PictureBox newfile;
+        private PictureBox openfile;
+        private PictureBox savefile;
+        private PictureBox exitfile;
+        private SaveFileDialog saveFileDialog1;
     }
 }
