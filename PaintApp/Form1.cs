@@ -23,7 +23,7 @@ namespace PaintApp
             Text,
             Eraser,
             ColorPicker,
-            Zoom
+            Clear
         }
         private SelectedTool currentTool = SelectedTool.Pencil;
 
@@ -32,9 +32,10 @@ namespace PaintApp
             InitializeComponent();
             bm = new Bitmap(drawPanel.Width, drawPanel.Height);
             g = Graphics.FromImage(bm);
-            drawPanel.BackgroundImage = bm;
-            g = drawPanel.CreateGraphics();
             g.Clear(Color.White);
+            drawPanel.Image = bm;
+            g = drawPanel.CreateGraphics();
+
 
             // làm mượt nét vẽ
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
@@ -128,11 +129,11 @@ namespace PaintApp
                 case SelectedTool.ColorPicker:
                     this.Cursor = new Cursor("Cursor\\Color-picker.cur");
                     break;
-                case SelectedTool.Zoom:
-                    this.Cursor = new Cursor("Cursor\\Zoom.cur");
+                case SelectedTool.Clear:
+                    this.Cursor = Cursors.Default;
                     break;
                 default:
-                    this.Cursor = Cursors.Default;
+                    this.Cursor = new Cursor("Cursor\\Pencil.cur");
                     break;
             }
 
@@ -233,6 +234,25 @@ namespace PaintApp
             PictureBox pictureBox = (PictureBox)sender;
             pictureBox.BackColor = Color.LightCyan;
             pictureBox.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void tool_picker_Click(object sender, EventArgs e)
+        {
+            SetCurrentTool(SelectedTool.ColorPicker);
+            ResetPictureBoxColors();
+            PictureBox pictureBox = (PictureBox)sender;
+            pictureBox.BackColor = Color.LightCyan;
+            pictureBox.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void tool_clear_Click(object sender, EventArgs e)
+        {
+            SetCurrentTool(SelectedTool.Clear);
+            ResetPictureBoxColors();
+            PictureBox pictureBox = (PictureBox)sender;
+            pictureBox.BackColor = Color.LightCyan;
+            pictureBox.BorderStyle = BorderStyle.FixedSingle;
+            drawPanel.Refresh();
         }
         //----------------------------------------------------------------
 
@@ -519,13 +539,27 @@ namespace PaintApp
             Close();
         }
 
+        private void openfile_Click(object sender, EventArgs e)
+        {
+            var ofd = new OpenFileDialog();
+            ofd.Filter = "Image(*.jpg) |*.jpg|(*.*|*.*";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+
+                drawPanel.Image = new Bitmap(ofd.FileName);
+
+                // Add the new control to its parent's controls collection
+                this.Controls.Add(drawPanel);
+            }
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(index == 10)
+            if (index == 10)
             {
                 if (drawPanel != null)
                 {
-                    if (MessageBox.Show("Bạn có muốn lưu file", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Cancel)
+                    if (MessageBox.Show("Bạn có muốn lưu file", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
                         e.Cancel = true;
                 }
                 else
@@ -534,6 +568,20 @@ namespace PaintApp
                         e.Cancel = true;
                 }
             }
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.V && ModifierKeys == Keys.Control)
+            {
+                Bitmap bm = new Bitmap(drawPanel.Width, drawPanel.Height); ;
+                // Paste hình ảnh từ clipboard vào Bitmap
+                Image img = Clipboard.GetImage();
+                Graphics.FromImage(bm).DrawImage(img, Point.Empty);
+                drawPanel.SizeMode = PictureBoxSizeMode.StretchImage;
+                drawPanel.Image = bm;
+            }
+
         }
         //-------------------------------------------------------------------
     }

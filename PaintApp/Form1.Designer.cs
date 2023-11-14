@@ -40,7 +40,7 @@
             tool_text = new PictureBox();
             tool_eraser = new PictureBox();
             tool_picker = new PictureBox();
-            tool_zoom = new PictureBox();
+            tool_clear = new PictureBox();
             PenSize = new ComboBox();
             splitContainer1 = new SplitContainer();
             label1 = new Label();
@@ -86,9 +86,10 @@
             openfile = new PictureBox();
             savefile = new PictureBox();
             exitfile = new PictureBox();
-            drawPanel = new Panel();
             imageList1 = new ImageList(components);
             saveFileDialog1 = new SaveFileDialog();
+            drawPanel = new PictureBox();
+            openFileDialog1 = new OpenFileDialog();
             tableLayoutPanel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -99,7 +100,7 @@
             ((System.ComponentModel.ISupportInitialize)tool_text).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tool_eraser).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tool_picker).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)tool_zoom).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tool_clear).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -145,176 +146,116 @@
             ((System.ComponentModel.ISupportInitialize)openfile).BeginInit();
             ((System.ComponentModel.ISupportInitialize)savefile).BeginInit();
             ((System.ComponentModel.ISupportInitialize)exitfile).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)drawPanel).BeginInit();
             SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            resources.ApplyResources(tableLayoutPanel1, "tableLayoutPanel1");
             tableLayoutPanel1.Controls.Add(tabControl1, 0, 0);
-            tableLayoutPanel1.Dock = DockStyle.Top;
-            tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(1484, 135);
-            tableLayoutPanel1.TabIndex = 0;
             // 
             // tabControl1
             // 
-            tabControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            resources.ApplyResources(tabControl1, "tabControl1");
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
-            tabControl1.Location = new Point(3, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1478, 129);
-            tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             tabPage1.Controls.Add(tableLayoutPanel2);
-            tabPage1.Location = new Point(4, 24);
+            resources.ApplyResources(tabPage1, "tabPage1");
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1470, 101);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Home";
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            tableLayoutPanel2.ColumnCount = 4;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38.29787F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 61.70213F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 148F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 245F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            resources.ApplyResources(tableLayoutPanel2, "tableLayoutPanel2");
             tableLayoutPanel2.Controls.Add(tableTool, 0, 0);
             tableLayoutPanel2.Controls.Add(PenSize, 2, 0);
             tableLayoutPanel2.Controls.Add(splitContainer1, 3, 0);
             tableLayoutPanel2.Controls.Add(flowLayoutPanel1, 1, 0);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 1;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.Size = new Size(1464, 95);
-            tableLayoutPanel2.TabIndex = 0;
             // 
             // tableTool
             // 
-            tableTool.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tableTool.ColumnCount = 3;
-            tableTool.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableTool.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableTool.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
+            resources.ApplyResources(tableTool, "tableTool");
             tableTool.Controls.Add(tool_pencil, 0, 0);
             tableTool.Controls.Add(tool_bucket, 1, 0);
             tableTool.Controls.Add(tool_text, 2, 0);
             tableTool.Controls.Add(tool_eraser, 0, 1);
             tableTool.Controls.Add(tool_picker, 1, 1);
-            tableTool.Controls.Add(tool_zoom, 2, 1);
-            tableTool.Location = new Point(4, 4);
+            tableTool.Controls.Add(tool_clear, 2, 1);
             tableTool.Name = "tableTool";
-            tableTool.RowCount = 2;
-            tableTool.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableTool.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableTool.Size = new Size(402, 87);
-            tableTool.TabIndex = 1;
             // 
             // tool_pencil
             // 
-            tool_pencil.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            resources.ApplyResources(tool_pencil, "tool_pencil");
             tool_pencil.BackgroundImage = Properties.Resources.pencil;
-            tool_pencil.BackgroundImageLayout = ImageLayout.Stretch;
             tool_pencil.Cursor = Cursors.Hand;
-            tool_pencil.Location = new Point(92, 3);
             tool_pencil.Name = "tool_pencil";
-            tool_pencil.Size = new Size(38, 37);
-            tool_pencil.TabIndex = 2;
             tool_pencil.TabStop = false;
             tool_pencil.Click += tool_pencil_Click;
             // 
             // tool_bucket
             // 
-            tool_bucket.Anchor = AnchorStyles.Top;
+            resources.ApplyResources(tool_bucket, "tool_bucket");
             tool_bucket.BackgroundImage = Properties.Resources.paint_bucket;
-            tool_bucket.BackgroundImageLayout = ImageLayout.Stretch;
             tool_bucket.Cursor = Cursors.Hand;
-            tool_bucket.Location = new Point(180, 3);
             tool_bucket.Name = "tool_bucket";
-            tool_bucket.Size = new Size(38, 37);
-            tool_bucket.TabIndex = 3;
             tool_bucket.TabStop = false;
             tool_bucket.Click += tool_bucket_Click;
             // 
             // tool_text
             // 
             tool_text.BackgroundImage = Properties.Resources.text;
-            tool_text.BackgroundImageLayout = ImageLayout.Stretch;
+            resources.ApplyResources(tool_text, "tool_text");
             tool_text.Cursor = Cursors.Hand;
-            tool_text.Location = new Point(269, 3);
             tool_text.Name = "tool_text";
-            tool_text.Size = new Size(40, 37);
-            tool_text.TabIndex = 4;
             tool_text.TabStop = false;
             // 
             // tool_eraser
             // 
-            tool_eraser.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            resources.ApplyResources(tool_eraser, "tool_eraser");
             tool_eraser.BackgroundImage = Properties.Resources.eraser;
-            tool_eraser.BackgroundImageLayout = ImageLayout.Stretch;
             tool_eraser.Cursor = Cursors.Hand;
-            tool_eraser.Location = new Point(92, 46);
             tool_eraser.Name = "tool_eraser";
-            tool_eraser.Size = new Size(38, 38);
-            tool_eraser.TabIndex = 5;
             tool_eraser.TabStop = false;
             tool_eraser.Click += tool_eraser_Click;
             // 
             // tool_picker
             // 
-            tool_picker.Anchor = AnchorStyles.Bottom;
+            resources.ApplyResources(tool_picker, "tool_picker");
             tool_picker.BackgroundImage = Properties.Resources.color_picker;
-            tool_picker.BackgroundImageLayout = ImageLayout.Stretch;
             tool_picker.Cursor = Cursors.Hand;
-            tool_picker.Location = new Point(180, 46);
             tool_picker.Name = "tool_picker";
-            tool_picker.Size = new Size(38, 38);
-            tool_picker.TabIndex = 6;
             tool_picker.TabStop = false;
+            tool_picker.Click += tool_picker_Click;
             // 
-            // tool_zoom
+            // tool_clear
             // 
-            tool_zoom.BackgroundImage = Properties.Resources.loupe;
-            tool_zoom.BackgroundImageLayout = ImageLayout.Stretch;
-            tool_zoom.Cursor = Cursors.Hand;
-            tool_zoom.Location = new Point(269, 46);
-            tool_zoom.Name = "tool_zoom";
-            tool_zoom.Size = new Size(40, 38);
-            tool_zoom.TabIndex = 7;
-            tool_zoom.TabStop = false;
+            tool_clear.BackgroundImage = Properties.Resources.dust1;
+            resources.ApplyResources(tool_clear, "tool_clear");
+            tool_clear.Cursor = Cursors.Hand;
+            tool_clear.Name = "tool_clear";
+            tool_clear.TabStop = false;
+            tool_clear.Click += tool_clear_Click;
             // 
             // PenSize
             // 
-            PenSize.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            resources.ApplyResources(PenSize, "PenSize");
             PenSize.DrawMode = DrawMode.OwnerDrawFixed;
             PenSize.FormattingEnabled = true;
-            PenSize.Items.AddRange(new object[] { "2px", "4px", "6px", "8px", "10px" });
-            PenSize.Location = new Point(1071, 35);
+            PenSize.Items.AddRange(new object[] { resources.GetString("PenSize.Items"), resources.GetString("PenSize.Items1"), resources.GetString("PenSize.Items2"), resources.GetString("PenSize.Items3"), resources.GetString("PenSize.Items4") });
             PenSize.Name = "PenSize";
-            PenSize.Size = new Size(142, 24);
-            PenSize.TabIndex = 2;
-            PenSize.Text = "2px";
             PenSize.DrawItem += PenSize_DrawItem;
             PenSize.SelectedIndexChanged += PenSize_SelectedIndexChanged;
             // 
             // splitContainer1
             // 
-            splitContainer1.Location = new Point(1220, 4);
+            resources.ApplyResources(splitContainer1, "splitContainer1");
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -338,50 +279,31 @@
             splitContainer1.Panel2.Controls.Add(pictureBox4);
             splitContainer1.Panel2.Controls.Add(pictureBox3);
             splitContainer1.Panel2.Controls.Add(pictureBox2);
-            splitContainer1.Size = new Size(240, 87);
-            splitContainer1.SplitterDistance = 59;
-            splitContainer1.TabIndex = 3;
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(3, 58);
+            resources.ApplyResources(label1, "label1");
             label1.Name = "label1";
-            label1.Size = new Size(53, 26);
-            label1.TabIndex = 1;
-            label1.Text = "Color";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
-            pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            resources.ApplyResources(pictureBox1, "pictureBox1");
             pictureBox1.BackColor = Color.Black;
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox1.Location = new Point(3, 5);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(53, 50);
-            pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // label2
             // 
-            label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(119, 62);
+            resources.ApplyResources(label2, "label2");
             label2.Name = "label2";
-            label2.Size = new Size(58, 22);
-            label2.TabIndex = 13;
-            label2.Text = "Edit Color";
             // 
             // pictureBox14
             // 
             pictureBox14.BackgroundImage = Properties.Resources.Editcolor1;
-            pictureBox14.BackgroundImageLayout = ImageLayout.Stretch;
+            resources.ApplyResources(pictureBox14, "pictureBox14");
             pictureBox14.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox14.Location = new Point(119, 8);
             pictureBox14.Name = "pictureBox14";
-            pictureBox14.Size = new Size(55, 50);
-            pictureBox14.TabIndex = 12;
             pictureBox14.TabStop = false;
             pictureBox14.Click += pictureBox14_Click;
             // 
@@ -389,10 +311,8 @@
             // 
             pictureBox13.BackColor = Color.FromArgb(192, 255, 192);
             pictureBox13.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox13.Location = new Point(92, 62);
+            resources.ApplyResources(pictureBox13, "pictureBox13");
             pictureBox13.Name = "pictureBox13";
-            pictureBox13.Size = new Size(21, 22);
-            pictureBox13.TabIndex = 11;
             pictureBox13.TabStop = false;
             pictureBox13.Click += pictureBox13_Click;
             // 
@@ -400,10 +320,8 @@
             // 
             pictureBox12.BackColor = Color.FromArgb(255, 255, 192);
             pictureBox12.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox12.Location = new Point(65, 62);
+            resources.ApplyResources(pictureBox12, "pictureBox12");
             pictureBox12.Name = "pictureBox12";
-            pictureBox12.Size = new Size(21, 22);
-            pictureBox12.TabIndex = 10;
             pictureBox12.TabStop = false;
             pictureBox12.Click += pictureBox12_Click;
             // 
@@ -411,10 +329,8 @@
             // 
             pictureBox11.BackColor = Color.FromArgb(255, 192, 192);
             pictureBox11.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox11.Location = new Point(38, 62);
+            resources.ApplyResources(pictureBox11, "pictureBox11");
             pictureBox11.Name = "pictureBox11";
-            pictureBox11.Size = new Size(21, 22);
-            pictureBox11.TabIndex = 9;
             pictureBox11.TabStop = false;
             pictureBox11.Click += pictureBox11_Click;
             // 
@@ -422,10 +338,8 @@
             // 
             pictureBox10.BackColor = Color.White;
             pictureBox10.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox10.Location = new Point(11, 62);
+            resources.ApplyResources(pictureBox10, "pictureBox10");
             pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(21, 22);
-            pictureBox10.TabIndex = 8;
             pictureBox10.TabStop = false;
             pictureBox10.Click += pictureBox10_Click;
             // 
@@ -433,10 +347,8 @@
             // 
             pictureBox9.BackColor = Color.FromArgb(128, 255, 255);
             pictureBox9.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox9.Location = new Point(92, 36);
+            resources.ApplyResources(pictureBox9, "pictureBox9");
             pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(21, 22);
-            pictureBox9.TabIndex = 7;
             pictureBox9.TabStop = false;
             pictureBox9.Click += pictureBox9_Click;
             // 
@@ -444,10 +356,8 @@
             // 
             pictureBox8.BackColor = Color.FromArgb(255, 255, 128);
             pictureBox8.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox8.Location = new Point(65, 36);
+            resources.ApplyResources(pictureBox8, "pictureBox8");
             pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(21, 22);
-            pictureBox8.TabIndex = 6;
             pictureBox8.TabStop = false;
             pictureBox8.Click += pictureBox8_Click;
             // 
@@ -455,10 +365,8 @@
             // 
             pictureBox7.BackColor = Color.Red;
             pictureBox7.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox7.Location = new Point(38, 36);
+            resources.ApplyResources(pictureBox7, "pictureBox7");
             pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(21, 22);
-            pictureBox7.TabIndex = 5;
             pictureBox7.TabStop = false;
             pictureBox7.Click += pictureBox7_Click;
             // 
@@ -466,10 +374,8 @@
             // 
             pictureBox6.BackColor = Color.Silver;
             pictureBox6.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox6.Location = new Point(11, 36);
+            resources.ApplyResources(pictureBox6, "pictureBox6");
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(21, 22);
-            pictureBox6.TabIndex = 4;
             pictureBox6.TabStop = false;
             pictureBox6.Click += pictureBox6_Click;
             // 
@@ -477,10 +383,8 @@
             // 
             pictureBox5.BackColor = Color.Blue;
             pictureBox5.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox5.Location = new Point(92, 8);
+            resources.ApplyResources(pictureBox5, "pictureBox5");
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(21, 22);
-            pictureBox5.TabIndex = 3;
             pictureBox5.TabStop = false;
             pictureBox5.Click += pictureBox5_Click;
             // 
@@ -488,10 +392,8 @@
             // 
             pictureBox4.BackColor = Color.FromArgb(255, 128, 0);
             pictureBox4.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox4.Location = new Point(65, 8);
+            resources.ApplyResources(pictureBox4, "pictureBox4");
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(21, 22);
-            pictureBox4.TabIndex = 2;
             pictureBox4.TabStop = false;
             pictureBox4.Click += pictureBox4_Click;
             // 
@@ -499,10 +401,8 @@
             // 
             pictureBox3.BackColor = Color.FromArgb(192, 0, 192);
             pictureBox3.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox3.Location = new Point(38, 8);
+            resources.ApplyResources(pictureBox3, "pictureBox3");
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(21, 22);
-            pictureBox3.TabIndex = 1;
             pictureBox3.TabStop = false;
             pictureBox3.Click += pictureBox3_Click;
             // 
@@ -510,17 +410,14 @@
             // 
             pictureBox2.BackColor = Color.Black;
             pictureBox2.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox2.Location = new Point(11, 8);
+            resources.ApplyResources(pictureBox2, "pictureBox2");
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(21, 22);
-            pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             pictureBox2.Click += pictureBox2_Click;
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            flowLayoutPanel1.AutoScroll = true;
+            resources.ApplyResources(flowLayoutPanel1, "flowLayoutPanel1");
             flowLayoutPanel1.Controls.Add(sh_hcn);
             flowLayoutPanel1.Controls.Add(sh_ht);
             flowLayoutPanel1.Controls.Add(pictureBox17);
@@ -541,296 +438,195 @@
             flowLayoutPanel1.Controls.Add(pictureBox32);
             flowLayoutPanel1.Controls.Add(pictureBox33);
             flowLayoutPanel1.Controls.Add(pictureBox34);
-            flowLayoutPanel1.Location = new Point(413, 4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(651, 87);
-            flowLayoutPanel1.TabIndex = 4;
             // 
             // sh_hcn
             // 
             sh_hcn.BackgroundImage = Properties.Resources.rectangle;
-            sh_hcn.BackgroundImageLayout = ImageLayout.Stretch;
-            sh_hcn.Location = new Point(3, 3);
+            resources.ApplyResources(sh_hcn, "sh_hcn");
             sh_hcn.Name = "sh_hcn";
-            sh_hcn.Size = new Size(27, 27);
-            sh_hcn.TabIndex = 0;
             sh_hcn.TabStop = false;
             sh_hcn.Click += sh_hcn_Click;
             // 
             // sh_ht
             // 
             sh_ht.BackgroundImage = Properties.Resources.circle;
-            sh_ht.BackgroundImageLayout = ImageLayout.Stretch;
-            sh_ht.Location = new Point(36, 3);
+            resources.ApplyResources(sh_ht, "sh_ht");
             sh_ht.Name = "sh_ht";
-            sh_ht.Size = new Size(27, 27);
-            sh_ht.TabIndex = 1;
             sh_ht.TabStop = false;
             sh_ht.Click += sh_ht_Click;
             // 
             // pictureBox17
             // 
             pictureBox17.BackgroundImage = Properties.Resources.hexagon;
-            pictureBox17.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox17.Location = new Point(69, 3);
+            resources.ApplyResources(pictureBox17, "pictureBox17");
             pictureBox17.Name = "pictureBox17";
-            pictureBox17.Size = new Size(27, 27);
-            pictureBox17.TabIndex = 2;
             pictureBox17.TabStop = false;
             // 
             // pictureBox18
             // 
             pictureBox18.BackgroundImage = Properties.Resources.left;
-            pictureBox18.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox18.Location = new Point(102, 3);
+            resources.ApplyResources(pictureBox18, "pictureBox18");
             pictureBox18.Name = "pictureBox18";
-            pictureBox18.Size = new Size(27, 27);
-            pictureBox18.TabIndex = 3;
             pictureBox18.TabStop = false;
             // 
             // pictureBox19
             // 
             pictureBox19.BackgroundImage = Properties.Resources.right;
-            pictureBox19.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox19.Location = new Point(135, 3);
+            resources.ApplyResources(pictureBox19, "pictureBox19");
             pictureBox19.Name = "pictureBox19";
-            pictureBox19.Size = new Size(27, 27);
-            pictureBox19.TabIndex = 4;
             pictureBox19.TabStop = false;
             // 
             // pictureBox20
             // 
             pictureBox20.BackgroundImage = Properties.Resources.star;
-            pictureBox20.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox20.Location = new Point(168, 3);
+            resources.ApplyResources(pictureBox20, "pictureBox20");
             pictureBox20.Name = "pictureBox20";
-            pictureBox20.Size = new Size(27, 27);
-            pictureBox20.TabIndex = 5;
             pictureBox20.TabStop = false;
             // 
             // pictureBox21
             // 
             pictureBox21.BackgroundImage = Properties.Resources.triangle;
-            pictureBox21.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox21.Location = new Point(201, 3);
+            resources.ApplyResources(pictureBox21, "pictureBox21");
             pictureBox21.Name = "pictureBox21";
-            pictureBox21.Size = new Size(27, 27);
-            pictureBox21.TabIndex = 6;
             pictureBox21.TabStop = false;
             // 
             // pictureBox22
             // 
             pictureBox22.BackgroundImage = Properties.Resources.rectangle_round;
-            pictureBox22.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox22.Location = new Point(234, 3);
+            resources.ApplyResources(pictureBox22, "pictureBox22");
             pictureBox22.Name = "pictureBox22";
-            pictureBox22.Size = new Size(27, 27);
-            pictureBox22.TabIndex = 7;
             pictureBox22.TabStop = false;
             // 
             // pictureBox23
             // 
             pictureBox23.BackgroundImage = Properties.Resources.heart;
-            pictureBox23.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox23.Location = new Point(267, 3);
+            resources.ApplyResources(pictureBox23, "pictureBox23");
             pictureBox23.Name = "pictureBox23";
-            pictureBox23.Size = new Size(27, 27);
-            pictureBox23.TabIndex = 8;
             pictureBox23.TabStop = false;
             // 
             // sh_line
             // 
             sh_line.BackgroundImage = Properties.Resources.Line;
-            sh_line.BackgroundImageLayout = ImageLayout.Stretch;
-            sh_line.Location = new Point(300, 3);
+            resources.ApplyResources(sh_line, "sh_line");
             sh_line.Name = "sh_line";
-            sh_line.Size = new Size(27, 27);
-            sh_line.TabIndex = 9;
             sh_line.TabStop = false;
             sh_line.Click += sh_line_Click;
             // 
             // pictureBox25
             // 
-            pictureBox25.Location = new Point(333, 3);
+            resources.ApplyResources(pictureBox25, "pictureBox25");
             pictureBox25.Name = "pictureBox25";
-            pictureBox25.Size = new Size(27, 27);
-            pictureBox25.TabIndex = 10;
             pictureBox25.TabStop = false;
             // 
             // pictureBox26
             // 
-            pictureBox26.Location = new Point(366, 3);
+            resources.ApplyResources(pictureBox26, "pictureBox26");
             pictureBox26.Name = "pictureBox26";
-            pictureBox26.Size = new Size(27, 27);
-            pictureBox26.TabIndex = 11;
             pictureBox26.TabStop = false;
             // 
             // pictureBox27
             // 
-            pictureBox27.Location = new Point(399, 3);
+            resources.ApplyResources(pictureBox27, "pictureBox27");
             pictureBox27.Name = "pictureBox27";
-            pictureBox27.Size = new Size(27, 27);
-            pictureBox27.TabIndex = 12;
             pictureBox27.TabStop = false;
             // 
             // pictureBox28
             // 
-            pictureBox28.Location = new Point(432, 3);
+            resources.ApplyResources(pictureBox28, "pictureBox28");
             pictureBox28.Name = "pictureBox28";
-            pictureBox28.Size = new Size(27, 27);
-            pictureBox28.TabIndex = 13;
             pictureBox28.TabStop = false;
             // 
             // pictureBox29
             // 
-            pictureBox29.Location = new Point(465, 3);
+            resources.ApplyResources(pictureBox29, "pictureBox29");
             pictureBox29.Name = "pictureBox29";
-            pictureBox29.Size = new Size(27, 27);
-            pictureBox29.TabIndex = 14;
             pictureBox29.TabStop = false;
             // 
             // pictureBox30
             // 
-            pictureBox30.Location = new Point(498, 3);
+            resources.ApplyResources(pictureBox30, "pictureBox30");
             pictureBox30.Name = "pictureBox30";
-            pictureBox30.Size = new Size(27, 27);
-            pictureBox30.TabIndex = 15;
             pictureBox30.TabStop = false;
             // 
             // pictureBox31
             // 
-            pictureBox31.Location = new Point(531, 3);
+            resources.ApplyResources(pictureBox31, "pictureBox31");
             pictureBox31.Name = "pictureBox31";
-            pictureBox31.Size = new Size(27, 27);
-            pictureBox31.TabIndex = 16;
             pictureBox31.TabStop = false;
             // 
             // pictureBox32
             // 
-            pictureBox32.Location = new Point(564, 3);
+            resources.ApplyResources(pictureBox32, "pictureBox32");
             pictureBox32.Name = "pictureBox32";
-            pictureBox32.Size = new Size(27, 27);
-            pictureBox32.TabIndex = 17;
             pictureBox32.TabStop = false;
             // 
             // pictureBox33
             // 
-            pictureBox33.Location = new Point(597, 3);
+            resources.ApplyResources(pictureBox33, "pictureBox33");
             pictureBox33.Name = "pictureBox33";
-            pictureBox33.Size = new Size(27, 27);
-            pictureBox33.TabIndex = 18;
             pictureBox33.TabStop = false;
             // 
             // pictureBox34
             // 
-            pictureBox34.Location = new Point(3, 36);
+            resources.ApplyResources(pictureBox34, "pictureBox34");
             pictureBox34.Name = "pictureBox34";
-            pictureBox34.Size = new Size(27, 27);
-            pictureBox34.TabIndex = 19;
             pictureBox34.TabStop = false;
             // 
             // tabPage2
             // 
             tabPage2.Controls.Add(tableLayoutPanel3);
-            tabPage2.Location = new Point(4, 24);
+            resources.ApplyResources(tabPage2, "tabPage2");
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1470, 101);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "File";
             tabPage2.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel3
             // 
-            tableLayoutPanel3.ColumnCount = 4;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            resources.ApplyResources(tableLayoutPanel3, "tableLayoutPanel3");
             tableLayoutPanel3.Controls.Add(newfile, 0, 0);
             tableLayoutPanel3.Controls.Add(openfile, 1, 0);
             tableLayoutPanel3.Controls.Add(savefile, 2, 0);
             tableLayoutPanel3.Controls.Add(exitfile, 3, 0);
-            tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(1464, 95);
-            tableLayoutPanel3.TabIndex = 0;
             // 
             // newfile
             // 
             newfile.BackgroundImage = Properties.Resources.add;
-            newfile.BackgroundImageLayout = ImageLayout.Center;
+            resources.ApplyResources(newfile, "newfile");
             newfile.BorderStyle = BorderStyle.FixedSingle;
             newfile.Cursor = Cursors.Hand;
-            newfile.Dock = DockStyle.Fill;
-            newfile.Location = new Point(3, 3);
             newfile.Name = "newfile";
-            newfile.Size = new Size(360, 89);
-            newfile.TabIndex = 0;
             newfile.TabStop = false;
             // 
             // openfile
             // 
             openfile.BackgroundImage = Properties.Resources.folder;
-            openfile.BackgroundImageLayout = ImageLayout.Center;
+            resources.ApplyResources(openfile, "openfile");
             openfile.BorderStyle = BorderStyle.FixedSingle;
             openfile.Cursor = Cursors.Hand;
-            openfile.Dock = DockStyle.Fill;
-            openfile.Location = new Point(369, 3);
             openfile.Name = "openfile";
-            openfile.Size = new Size(360, 89);
-            openfile.TabIndex = 1;
             openfile.TabStop = false;
+            openfile.Click += openfile_Click;
             // 
             // savefile
             // 
             savefile.BackgroundImage = Properties.Resources.floppy_disk;
-            savefile.BackgroundImageLayout = ImageLayout.Center;
+            resources.ApplyResources(savefile, "savefile");
             savefile.BorderStyle = BorderStyle.FixedSingle;
             savefile.Cursor = Cursors.Hand;
-            savefile.Dock = DockStyle.Fill;
-            savefile.Location = new Point(735, 3);
             savefile.Name = "savefile";
-            savefile.Size = new Size(360, 89);
-            savefile.TabIndex = 2;
             savefile.TabStop = false;
             savefile.Click += savefile_Click;
             // 
             // exitfile
             // 
             exitfile.BackgroundImage = Properties.Resources.emergency_exit;
-            exitfile.BackgroundImageLayout = ImageLayout.Center;
+            resources.ApplyResources(exitfile, "exitfile");
             exitfile.BorderStyle = BorderStyle.FixedSingle;
             exitfile.Cursor = Cursors.Hand;
-            exitfile.Dock = DockStyle.Fill;
-            exitfile.Location = new Point(1101, 3);
             exitfile.Name = "exitfile";
-            exitfile.Size = new Size(360, 89);
-            exitfile.TabIndex = 3;
             exitfile.TabStop = false;
             exitfile.Click += exitfile_Click;
-            // 
-            // drawPanel
-            // 
-            drawPanel.AutoScroll = true;
-            drawPanel.AutoSize = true;
-            drawPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            drawPanel.BackColor = SystemColors.ControlLightLight;
-            drawPanel.Dock = DockStyle.Fill;
-            drawPanel.Location = new Point(0, 135);
-            drawPanel.Name = "drawPanel";
-            drawPanel.Size = new Size(1484, 726);
-            drawPanel.TabIndex = 1;
-            drawPanel.Paint += drawPanel_Paint;
-            drawPanel.MouseClick += drawPanel_MouseClick;
-            drawPanel.MouseDown += drawPanel_MouseDown;
-            drawPanel.MouseEnter += drawPanel_MouseEnter;
-            drawPanel.MouseLeave += drawPanel_MouseLeave;
-            drawPanel.MouseMove += drawPanel_MouseMove;
-            drawPanel.MouseUp += drawPanel_MouseUp;
             // 
             // imageList1
             // 
@@ -843,19 +639,33 @@
             imageList1.Images.SetKeyName(3, "line8px.jpg");
             imageList1.Images.SetKeyName(4, "line10px.jpg");
             // 
+            // drawPanel
+            // 
+            drawPanel.BackColor = Color.White;
+            resources.ApplyResources(drawPanel, "drawPanel");
+            drawPanel.Name = "drawPanel";
+            drawPanel.TabStop = false;
+            drawPanel.Paint += drawPanel_Paint;
+            drawPanel.MouseClick += drawPanel_MouseClick;
+            drawPanel.MouseDown += drawPanel_MouseDown;
+            drawPanel.MouseEnter += drawPanel_MouseEnter;
+            drawPanel.MouseLeave += drawPanel_MouseLeave;
+            drawPanel.MouseMove += drawPanel_MouseMove;
+            drawPanel.MouseUp += drawPanel_MouseUp;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1484, 861);
-            Controls.Add(drawPanel);
             Controls.Add(tableLayoutPanel1);
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MinimumSize = new Size(800, 500);
+            Controls.Add(drawPanel);
             Name = "Form1";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Paint App";
             FormClosing += Form1_FormClosing;
+            KeyPress += Form1_KeyPress;
             tableLayoutPanel1.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
@@ -866,7 +676,7 @@
             ((System.ComponentModel.ISupportInitialize)tool_text).EndInit();
             ((System.ComponentModel.ISupportInitialize)tool_eraser).EndInit();
             ((System.ComponentModel.ISupportInitialize)tool_picker).EndInit();
-            ((System.ComponentModel.ISupportInitialize)tool_zoom).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tool_clear).EndInit();
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
@@ -912,14 +722,13 @@
             ((System.ComponentModel.ISupportInitialize)openfile).EndInit();
             ((System.ComponentModel.ISupportInitialize)savefile).EndInit();
             ((System.ComponentModel.ISupportInitialize)exitfile).EndInit();
+            ((System.ComponentModel.ISupportInitialize)drawPanel).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private TableLayoutPanel tableLayoutPanel1;
-        private Panel drawPanel;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
@@ -930,7 +739,7 @@
         private PictureBox tool_text;
         private PictureBox tool_eraser;
         private PictureBox tool_picker;
-        private PictureBox tool_zoom;
+        private PictureBox tool_clear;
         private ComboBox PenSize;
         private SplitContainer splitContainer1;
         private Label label1;
@@ -977,5 +786,7 @@
         private PictureBox savefile;
         private PictureBox exitfile;
         private SaveFileDialog saveFileDialog1;
+        private PictureBox drawPanel;
+        private OpenFileDialog openFileDialog1;
     }
 }
