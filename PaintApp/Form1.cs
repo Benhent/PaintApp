@@ -7,7 +7,7 @@ namespace PaintApp
 {
     public partial class Form1 : Form
     {
-        Bitmap bm;
+        Bitmap bm = new Bitmap(2000, 1000);
         Graphics g;
         bool drawing = false;
         Point startPoint;  // điểm bắt đầu vẽ
@@ -30,19 +30,22 @@ namespace PaintApp
         public Form1()
         {
             InitializeComponent();
+            this.Width = 1500;
+            this.Height = 830;
+            //g = drawPanel.CreateGraphics();
             bm = new Bitmap(drawPanel.Width, drawPanel.Height);
             g = Graphics.FromImage(bm);
             g.Clear(Color.White);
-            drawPanel.Image = bm;
             g = drawPanel.CreateGraphics();
+            drawPanel.Image = bm;
 
 
             // làm mượt nét vẽ
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
 
             // làm cho phân đuôi nét vẽ được bo tròn lại
-            pen.StartCap = pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;   // bút
-            era.StartCap = era.EndCap = System.Drawing.Drawing2D.LineCap.Round;   // tẩy
+            pen.StartCap = pen.EndCap = LineCap.Round;   // bút
+            era.StartCap = era.EndCap = LineCap.Round;   // tẩy
         }
 
 
@@ -64,43 +67,69 @@ namespace PaintApp
 
             sx = x - cx;
             sy = y - cy;
+            
+            using(g = Graphics.FromImage(bm))
+            {
+                if (index == 10)     // hình tròn
+                {
+                    g.DrawEllipse(pen, cx, cy, sx, sy);
+                }
+                if (index == 11)     // hình chữ nhật
+                {
+                    g.DrawRectangle(pen, cx, cy, sx, sy);
+                }
+                if (index == 12)     // đường thẳng
+                {
+                    g.DrawLine(pen, cx, cy, x, y);
+                }
+                if (index == 13)
+                {
+                    Point endPoint = e.Location;
+                    this.Invalidate();
+                    Point mdPoint = new Point((startPoint.X + endPoint.X) / 2, endPoint.Y);
+                    g.DrawPolygon(pen, new Point[] { startPoint, mdPoint, endPoint });
+                }
+                if (index == 6)
+                {
+                    string text = "";
+                    Font Font = new Font("Arial", 16);
+                    SolidBrush Brush = new SolidBrush(Color.Black);
+                    StringFormat drawFormat = new StringFormat();
+                    drawFormat.FormatFlags = StringFormatFlags.DirectionVertical;
+                    g.DrawString(text, Font, Brush, sx, sy, drawFormat);
+                }
+            }
 
-            if (index == 7)     // hình tròn
-            {
-                g.DrawEllipse(pen, cx, cy, sx, sy);
-            }
-            if (index == 8)     // hình chữ nhật
-            {
-                g.DrawRectangle(pen, cx, cy, sx, sy);
-            }
-            if (index == 9)     // đường thẳng
-            {
-                g.DrawLine(pen, cx, cy, x, y);
-            }
+            drawPanel.Invalidate();
+
         }
 
         private void drawPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (drawing)
             {
-                if (index == 1)     // bút
+                using (Graphics g = Graphics.FromImage(bm))
                 {
-                    Point endPoint = e.Location;  // điểm kết thúc vẽ
-                    g.DrawLine(pen, startPoint, endPoint);
-                    startPoint = endPoint;
+                    if (index == 1)     // bút
+                    {
+                        Point endPoint = e.Location;  // điểm kết thúc vẽ
+                        g.DrawLine(pen, startPoint, endPoint);
+                        startPoint = endPoint;
+                    }
+                    if (index == 2)     // tẩy
+                    {
+                        Point endPoint = e.Location;
+                        g.DrawLine(era, startPoint, endPoint);
+                        startPoint = endPoint;
+                    }
+                    if (index == 0)
+                    {
+                        Point endPoint = e.Location;  // điểm kết thúc vẽ
+                        g.DrawLine(pen, startPoint, endPoint);
+                        startPoint = endPoint;
+                    }
                 }
-                if (index == 2)     // tẩy
-                {
-                    Point endPoint = e.Location;
-                    g.DrawLine(era, startPoint, endPoint);
-                    startPoint = endPoint;
-                }
-                if (index == 0)
-                {
-                    Point endPoint = e.Location;  // điểm kết thúc vẽ
-                    g.DrawLine(pen, startPoint, endPoint);
-                    startPoint = endPoint;
-                }
+                drawPanel.Invalidate();
             }
             //drawPanel.Refresh();
 
@@ -139,13 +168,16 @@ namespace PaintApp
 
             switch (index)
             {
-                case 7:
+                case 10:
                     this.Cursor = Cursors.Cross;
                     break;
-                case 8:
+                case 11:
                     this.Cursor = Cursors.Cross;
                     break;
-                case 9:
+                case 12:
+                    this.Cursor = Cursors.Cross;
+                    break;
+                case 13:
                     this.Cursor = Cursors.Cross;
                     break;
             }
@@ -161,25 +193,18 @@ namespace PaintApp
             Graphics g = e.Graphics;
             if (drawing)
             {
-                if (index == 7)
+                if (index == 10)
                 {
                     g.DrawEllipse(pen, cx, cy, sx, sy);
                 }
-                if (index == 8)
+                if (index == 11)
                 {
                     g.DrawRectangle(pen, cx, cy, sx, sy);
                 }
-                if (index == 9)
+                if (index == 12)
                 {
                     g.DrawLine(pen, cx, cy, x, y);
                 }
-            }
-        }
-
-        private void drawPanel_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (index == 3)
-            {
 
             }
         }
@@ -224,16 +249,61 @@ namespace PaintApp
             pictureBox.BorderStyle = BorderStyle.FixedSingle;
         }
 
-
         private void tool_bucket_Click(object sender, EventArgs e)  // tô màu nền
         {
-
             index = 3;
             SetCurrentTool(SelectedTool.Bucket);
             ResetPictureBoxColors();
             PictureBox pictureBox = (PictureBox)sender;
             pictureBox.BackColor = Color.LightCyan;
             pictureBox.BorderStyle = BorderStyle.FixedSingle;
+
+            drawPanel.MouseClick += drawPanel_MouseClickForBucket;
+        }
+
+        private void drawPanel_MouseClickForBucket(object sender, MouseEventArgs e) // tô màu
+        {
+            if (currentTool == SelectedTool.Bucket)
+            {
+                Color targetColor = GetPixelColor((int)e.X, (int)e.Y);
+                FloodFill(bm, (int)e.X, (int)e.Y, targetColor, pen.Color);
+
+                drawPanel.Invalidate();
+            }
+        }
+
+        private Color GetPixelColor(int x, int y)                  // kiểm tra màu hiện tại
+        {
+            if (x >= 0 && x < bm.Width && y >= 0 && y < bm.Height)
+            {
+                return bm.GetPixel(x, y);
+            }
+
+            return Color.Empty;
+        }
+
+        private void FloodFill(Bitmap bmp, int x, int y, Color targetColor, Color replacementColor) // kiểm tra vùng tô màu
+        {
+            Stack<(int, int)> stack = new Stack<(int, int)>();
+            stack.Push((x, y));
+
+            while (stack.Count > 0)
+            {
+                (int currentX, int currentY) = stack.Pop();
+
+                if (currentX >= 0 && currentX < bmp.Width && currentY >= 0 && currentY < bmp.Height)
+                {
+                    if (bmp.GetPixel(currentX, currentY) == targetColor)
+                    {
+                        bmp.SetPixel(currentX, currentY, replacementColor);
+
+                        stack.Push((currentX - 1, currentY));
+                        stack.Push((currentX + 1, currentY));
+                        stack.Push((currentX, currentY - 1));
+                        stack.Push((currentX, currentY + 1));
+                    }
+                }
+            }
         }
 
         private void tool_picker_Click(object sender, EventArgs e)
@@ -254,6 +324,17 @@ namespace PaintApp
             pictureBox.BorderStyle = BorderStyle.FixedSingle;
             drawPanel.Refresh();
         }
+
+        private void tool_text_Click(object sender, EventArgs e)
+        {
+            index = 6;
+            SetCurrentTool(SelectedTool.Text);
+            ResetPictureBoxColors();
+            PictureBox pictureBox = (PictureBox)sender;
+            pictureBox.BackColor = Color.LightCyan;
+            pictureBox.BorderStyle = BorderStyle.FixedSingle;
+
+        }
         //----------------------------------------------------------------
 
 
@@ -263,19 +344,24 @@ namespace PaintApp
         // shape----------------------------------------------------------
         private void sh_ht_Click(object sender, EventArgs e)    // hình tròn
         {
-            index = 7;
+            index = 10;
             ResetPictureBoxColors();
         }
 
         private void sh_hcn_Click(object sender, EventArgs e)   // hình chữ nhật
         {
-            index = 8;
+            index = 11;
             ResetPictureBoxColors();
         }
 
         private void sh_line_Click(object sender, EventArgs e)  // đường thẳng
         {
-            index = 9;
+            index = 12;
+            ResetPictureBoxColors();
+        }
+        private void sh_htg_Click(object sender, EventArgs e)
+        {
+            index = 13;
             ResetPictureBoxColors();
         }
         //----------------------------------------------------------------
@@ -524,40 +610,69 @@ namespace PaintApp
         //save------------------------------------------------------------
         private void savefile_Click(object sender, EventArgs e)
         {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = "Image(*.jpg) |*.jpg|(*.*|*.*";
-            if (sfd.ShowDialog() == DialogResult.OK)
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Jpeg Image|*.jpg|Bitmap Image *.bmp|";
+            saveFileDialog.Title = "Save an Image File";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                Bitmap btm = bm.Clone(new Rectangle(0, 0, drawPanel.Width, drawPanel.Height), bm.PixelFormat);
-                btm.Save(sfd.FileName, ImageFormat.Jpeg);
+                string fileName = saveFileDialog.FileName;
+
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    switch (saveFileDialog.FilterIndex)
+                    {
+                        case 1:
+                            bm.Save(fs, ImageFormat.Jpeg);
+                            break;
+                        case 2:
+                            bm.Save(fs, ImageFormat.Bmp);
+                            break;
+                    }
+                }
             }
         }
 
         private void exitfile_Click(object sender, EventArgs e)
         {
-            index = 10;
+            index = 30;
             Close();
         }
 
         private void openfile_Click(object sender, EventArgs e)
         {
-            var ofd = new OpenFileDialog();
-            ofd.Filter = "Image(*.jpg) |*.jpg|(*.*|*.*";
-            if (ofd.ShowDialog() == DialogResult.OK)
+            //var ofd = new OpenFileDialog();
+            //ofd.Filter = "Image(*.jpg) |*.jpg|(*.*|*.*";
+            //if (ofd.ShowDialog() == DialogResult.OK)
+            //{
+
+            //    drawPanel.Image = new Bitmap(ofd.FileName);
+
+            //    // Add the new control to its parent's controls collection
+            //    this.Controls.Add(drawPanel);
+            //}
+
+            using (OpenFileDialog dlg = new OpenFileDialog())
             {
+                dlg.Title = "Open Image";
+                dlg.Filter = "Image(*.jpg) |*.jpg|(*.*|*.*";
 
-                drawPanel.Image = new Bitmap(ofd.FileName);
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    PictureBox PictureBox1 = new PictureBox();
+                    PictureBox1.Image = new Bitmap(dlg.FileName);
 
-                // Add the new control to its parent's controls collection
-                this.Controls.Add(drawPanel);
+                    // Add the new control to its parent's controls collection
+                    this.Controls.Add(drawPanel);
+                }
             }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (index == 10)
+            if (index == 30)
             {
-                if (drawPanel != null)
+                if (bm != null)
                 {
                     if (MessageBox.Show("Bạn có muốn lưu file", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
                         e.Cancel = true;
