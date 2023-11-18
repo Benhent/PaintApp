@@ -1241,7 +1241,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tabControl1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50" /&gt;&lt;Rows Styles="Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
@@ -1254,7 +1254,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAEZTeXN0ZW0uV2luZG93cy5Gb3JtcywgQ3VsdHVyZT1uZXV0cmFs
         LCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5BQEAAAAmU3lzdGVtLldpbmRvd3MuRm9ybXMu
         SW1hZ2VMaXN0U3RyZWFtZXIBAAAABERhdGEHAgIAAAAJAwAAAA8DAAAAzgAAAAJNU0Z0AUkBTAIBAQUB
-        AAEgAQIBIAECARABAAEQAQAE/wEZAQAI/wFCAU0BNgcAATYDAAEoAwABQAMAASADAAEBAQABGAYAARgS
+        AAFoAQIBaAECARABAAEQAQAE/wEZAQAI/wFCAU0BNgcAATYDAAEoAwABQAMAASADAAEBAQABGAYAARgS
         ADD/kAAw/5AAMP+QADD/kAAwgP8A/wD/AP8A/wAVADD/kAAw/5AAMP+QADD/kAAw/5AA//////////9U
         /zAAMP8wgP8AIQAwgJAAYP9gAJD/MID////////D/wFCAU0BPgcAAT4DAAEoAwABQAMAASADAAEBAQAB
         AQYAAQEWAAP//wACAAs=
@@ -1270,10 +1270,10 @@
     <value>Fill</value>
   </data>
   <data name="drawPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+    <value>0, 135</value>
   </data>
   <data name="drawPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1484, 791</value>
+    <value>1484, 656</value>
   </data>
   <data name="drawPanel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1288,7 +1288,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;drawPanel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>263, 17</value>

@@ -542,11 +542,11 @@
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(tableLayoutPanel1);
             Controls.Add(drawPanel);
+            Controls.Add(tableLayoutPanel1);
             Name = "Form1";
-            FormClosing += Form1_FormClosing;
-            KeyPress += Form1_KeyPress;
+            Load += Form1_Load;
+            KeyDown += Form1_KeyDown;
             tableLayoutPanel1.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);

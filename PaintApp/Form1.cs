@@ -32,7 +32,6 @@ namespace PaintApp
             InitializeComponent();
             this.Width = 1500;
             this.Height = 830;
-            //g = drawPanel.CreateGraphics();
             bm = new Bitmap(drawPanel.Width, drawPanel.Height);
             g = Graphics.FromImage(bm);
             g.Clear(Color.White);
@@ -67,8 +66,8 @@ namespace PaintApp
 
             sx = x - cx;
             sy = y - cy;
-            
-            using(g = Graphics.FromImage(bm))
+
+            using (g = Graphics.FromImage(bm))
             {
                 if (index == 10)     // hình tròn
                 {
@@ -229,6 +228,38 @@ namespace PaintApp
             currentTool = tool;
         }
 
+        private void drawPanel_MouseClickfortools(object sender, MouseEventArgs e) // chức năng cho tool
+        {
+            if (currentTool == SelectedTool.Bucket)         // bucket 
+            {
+                Color targetColor = GetPixelColor((int)e.X, (int)e.Y);
+                FloodFill(bm, (int)e.X, (int)e.Y, targetColor, pen.Color);
+
+                drawPanel.Invalidate();
+            }
+            if (currentTool == SelectedTool.ColorPicker)    // color picker
+            {
+                // Get the color of the pixel at the clicked position
+                Color pickedColor = GetPixelColor((int)e.X, (int)e.Y);
+
+                // Set the picked color as the current drawing color
+                pen.Color = pickedColor;
+
+                // Update the color in the color picker tool
+                pictureBox1.BackColor = pickedColor;
+            }
+        }
+
+        private Color GetPixelColor(int x, int y)                   // kiểm tra màu hiện tại
+        {
+            if (x >= 0 && x < bm.Width && y >= 0 && y < bm.Height)
+            {
+                return bm.GetPixel(x, y);
+            }
+
+            return Color.Empty;
+        }
+
         private void tool_pencil_Click(object sender, EventArgs e)  // bút 
         {
             index = 1;
@@ -258,31 +289,10 @@ namespace PaintApp
             pictureBox.BackColor = Color.LightCyan;
             pictureBox.BorderStyle = BorderStyle.FixedSingle;
 
-            drawPanel.MouseClick += drawPanel_MouseClickForBucket;
+            drawPanel.MouseClick += drawPanel_MouseClickfortools;
         }
 
-        private void drawPanel_MouseClickForBucket(object sender, MouseEventArgs e) // tô màu
-        {
-            if (currentTool == SelectedTool.Bucket)
-            {
-                Color targetColor = GetPixelColor((int)e.X, (int)e.Y);
-                FloodFill(bm, (int)e.X, (int)e.Y, targetColor, pen.Color);
-
-                drawPanel.Invalidate();
-            }
-        }
-
-        private Color GetPixelColor(int x, int y)                  // kiểm tra màu hiện tại
-        {
-            if (x >= 0 && x < bm.Width && y >= 0 && y < bm.Height)
-            {
-                return bm.GetPixel(x, y);
-            }
-
-            return Color.Empty;
-        }
-
-        private void FloodFill(Bitmap bmp, int x, int y, Color targetColor, Color replacementColor) // kiểm tra vùng tô màu
+        private void FloodFill(Bitmap bmp, int x, int y, Color targetColor, Color replacementColor) // kiểm tra vùng tô màu và tô màu
         {
             Stack<(int, int)> stack = new Stack<(int, int)>();
             stack.Push((x, y));
@@ -313,6 +323,8 @@ namespace PaintApp
             PictureBox pictureBox = (PictureBox)sender;
             pictureBox.BackColor = Color.LightCyan;
             pictureBox.BorderStyle = BorderStyle.FixedSingle;
+
+            drawPanel.MouseClick += drawPanel_MouseClickfortools;
         }
 
         private void tool_clear_Click(object sender, EventArgs e)
@@ -322,7 +334,13 @@ namespace PaintApp
             PictureBox pictureBox = (PictureBox)sender;
             pictureBox.BackColor = Color.LightCyan;
             pictureBox.BorderStyle = BorderStyle.FixedSingle;
-            drawPanel.Refresh();
+
+            using (Graphics g = Graphics.FromImage(bm))
+            {
+                g.Clear(Color.White);
+            }
+
+            drawPanel.Invalidate();
         }
 
         private void tool_text_Click(object sender, EventArgs e)
@@ -608,7 +626,7 @@ namespace PaintApp
 
         //---------------------------FILE---------------------------------
         //save------------------------------------------------------------
-        private void savefile_Click(object sender, EventArgs e)
+        private void savefile_Click(object sender, EventArgs e)   // save file
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Jpeg Image|*.jpg|Bitmap Image *.bmp|";
@@ -635,68 +653,101 @@ namespace PaintApp
 
         private void exitfile_Click(object sender, EventArgs e)
         {
-            index = 30;
-            Close();
+            if (bm != null)
+            {
+                DialogResult result = MessageBox.Show("bạn có muốn lưu lại file trước khi thoát?", "Thoát", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // lưu trước khi thoát
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.Filter = "Jpeg Image|*.jpg|Bitmap Image *.bmp|";
+                    saveFileDialog.Title = "Lưu file trước khi thoát";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string fileName = saveFileDialog.FileName;
+
+                        using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                        {
+                            switch (saveFileDialog.FilterIndex)
+                            {
+                                case 1:
+                                    bm.Save(fs, ImageFormat.Jpeg);
+                                    break;
+                                case 2:
+                                    bm.Save(fs, ImageFormat.Bmp);
+                                    break;
+                            }
+                        }
+                    }
+                }
+                else if (result == DialogResult.No)
+                {
+                    // chọn không lưu thì tiến hành thoát
+                    Close();
+                }
+                // nếu bấm cancle thì không làm gì cả
+            }
+            else
+            {
+                // không có gì thì sẽ tự thoát
+                Close();
+            }
         }
 
         private void openfile_Click(object sender, EventArgs e)
         {
-            //var ofd = new OpenFileDialog();
-            //ofd.Filter = "Image(*.jpg) |*.jpg|(*.*|*.*";
-            //if (ofd.ShowDialog() == DialogResult.OK)
-            //{
-
-            //    drawPanel.Image = new Bitmap(ofd.FileName);
-
-            //    // Add the new control to its parent's controls collection
-            //    this.Controls.Add(drawPanel);
-            //}
-
-            using (OpenFileDialog dlg = new OpenFileDialog())
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                dlg.Title = "Open Image";
-                dlg.Filter = "Image(*.jpg) |*.jpg|(*.*|*.*";
+                openFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.png)|*.bmp;*.jpg;*.png|All files (*.*)|*.*";
 
-                if (dlg.ShowDialog() == DialogResult.OK)
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    PictureBox PictureBox1 = new PictureBox();
-                    PictureBox1.Image = new Bitmap(dlg.FileName);
-
-                    // Add the new control to its parent's controls collection
-                    this.Controls.Add(drawPanel);
+                    // Load the selected image into the drawPanel
+                    try
+                    {
+                        Bitmap loadedImage = new Bitmap(openFileDialog.FileName);
+                        bm = new Bitmap(loadedImage);
+                        g = Graphics.FromImage(bm);
+                        drawPanel.Image = bm;
+                        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                        drawPanel.Invalidate();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error loading the image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (index == 30)
+            if (e.Control && e.KeyCode == Keys.V)
             {
-                if (bm != null)
+                if (Clipboard.ContainsImage())
                 {
-                    if (MessageBox.Show("Bạn có muốn lưu file", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
-                        e.Cancel = true;
-                }
-                else
-                {
-                    if (MessageBox.Show("Bạn muốn thoát chương trình", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Cancel)
-                        e.Cancel = true;
+                    // Retrieve the image from the clipboard
+                    Image clipboardImage = Clipboard.GetImage();
+
+                    // Create a new Bitmap from the clipboard image
+                    Bitmap clipboardBitmap = new Bitmap(clipboardImage);
+
+                    // Paste the clipboard image onto the drawing panel
+                    using (Graphics g = Graphics.FromImage(bm))
+                    {
+                        g.DrawImage(clipboardBitmap, drawPanel.PointToClient(Cursor.Position));
+                    }
+
+                    drawPanel.Invalidate();
                 }
             }
         }
 
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            if (e.KeyChar == (char)Keys.V && ModifierKeys == Keys.Control)
-            {
-                Bitmap bm = new Bitmap(drawPanel.Width, drawPanel.Height); ;
-                // Paste hình ảnh từ clipboard vào Bitmap
-                Image img = Clipboard.GetImage();
-                Graphics.FromImage(bm).DrawImage(img, Point.Empty);
-                drawPanel.SizeMode = PictureBoxSizeMode.StretchImage;
-                drawPanel.Image = bm;
-            }
-
+            this.KeyDown += Form1_KeyDown;
         }
         //-------------------------------------------------------------------
     }
