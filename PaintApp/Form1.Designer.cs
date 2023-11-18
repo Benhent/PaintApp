@@ -479,6 +479,7 @@
             newfile.Cursor = Cursors.Hand;
             newfile.Name = "newfile";
             newfile.TabStop = false;
+            newfile.Click += newfile_Click;
             // 
             // openfile
             // 
@@ -545,8 +546,6 @@
             Controls.Add(drawPanel);
             Controls.Add(tableLayoutPanel1);
             Name = "Form1";
-            Load += Form1_Load;
-            KeyDown += Form1_KeyDown;
             tableLayoutPanel1.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);

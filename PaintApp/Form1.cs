@@ -81,21 +81,18 @@ namespace PaintApp
                 {
                     g.DrawLine(pen, cx, cy, x, y);
                 }
-                if (index == 13)
+                if (index == 13)    // hình tam giác
                 {
-                    Point endPoint = e.Location;
-                    this.Invalidate();
-                    Point mdPoint = new Point((startPoint.X + endPoint.X) / 2, endPoint.Y);
-                    g.DrawPolygon(pen, new Point[] { startPoint, mdPoint, endPoint });
-                }
-                if (index == 6)
-                {
-                    string text = "";
-                    Font Font = new Font("Arial", 16);
-                    SolidBrush Brush = new SolidBrush(Color.Black);
-                    StringFormat drawFormat = new StringFormat();
-                    drawFormat.FormatFlags = StringFormatFlags.DirectionVertical;
-                    g.DrawString(text, Font, Brush, sx, sy, drawFormat);
+                    // tính chiều cao của tam giác
+                    int height = (int)(Math.Sqrt(3) / 2 * (x - cx));
+
+                    // xác định các đỉnh của tam giác
+                    Point vertex1 = new Point(cx, cy + height);
+                    Point vertex2 = new Point(cx + (x - cx), cy + height);
+                    Point vertex3 = new Point(cx + (x - cx) / 2, cy);
+
+                    // vẽ
+                    g.DrawPolygon(pen, new Point[] { vertex1, vertex2, vertex3 });
                 }
             }
 
@@ -204,7 +201,14 @@ namespace PaintApp
                 {
                     g.DrawLine(pen, cx, cy, x, y);
                 }
-
+                if (index == 13)
+                {
+                    int height = (int)(Math.Sqrt(3) / 2 * (x - cx));
+                    Point vertex1 = new Point(cx, cy + height);
+                    Point vertex2 = new Point(cx + (x - cx), cy + height);
+                    Point vertex3 = new Point(cx + (x - cx) / 2, cy);
+                    g.DrawPolygon(pen, new Point[] { vertex1, vertex2, vertex3 });
+                }
             }
         }
         //----------------------------------------------------------------
@@ -247,6 +251,26 @@ namespace PaintApp
 
                 // Update the color in the color picker tool
                 pictureBox1.BackColor = pickedColor;
+            }
+            if (currentTool == SelectedTool.Text)
+            {
+                using (Graphics g = Graphics.FromImage(bm))
+                {
+                    // Prompt the user for text input
+                    string userInput = Microsoft.VisualBasic.Interaction.InputBox("Enter text:", "Text Tool", "");
+
+                    if (!string.IsNullOrEmpty(userInput))
+                    {
+                        Font font = new Font("Arial", 16);
+                        SolidBrush brush = new SolidBrush(pen.Color);
+                        StringFormat drawFormat = new StringFormat();
+
+                        // Draw the text at the clicked position
+                        g.DrawString(userInput, font, brush, e.Location, drawFormat);
+
+                        drawPanel.Invalidate();
+                    }
+                }
             }
         }
 
@@ -345,12 +369,13 @@ namespace PaintApp
 
         private void tool_text_Click(object sender, EventArgs e)
         {
-            index = 6;
             SetCurrentTool(SelectedTool.Text);
             ResetPictureBoxColors();
             PictureBox pictureBox = (PictureBox)sender;
             pictureBox.BackColor = Color.LightCyan;
             pictureBox.BorderStyle = BorderStyle.FixedSingle;
+
+            drawPanel.MouseClick -= drawPanel_MouseClickfortools;
 
         }
         //----------------------------------------------------------------
@@ -377,7 +402,7 @@ namespace PaintApp
             index = 12;
             ResetPictureBoxColors();
         }
-        private void sh_htg_Click(object sender, EventArgs e)
+        private void sh_htg_Click(object sender, EventArgs e)   // hình tam giác
         {
             index = 13;
             ResetPictureBoxColors();
@@ -651,7 +676,7 @@ namespace PaintApp
             }
         }
 
-        private void exitfile_Click(object sender, EventArgs e)
+        private void exitfile_Click(object sender, EventArgs e)     // exit  
         {
             if (bm != null)
             {
@@ -696,7 +721,7 @@ namespace PaintApp
             }
         }
 
-        private void openfile_Click(object sender, EventArgs e)
+        private void openfile_Click(object sender, EventArgs e)     // open file
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -704,14 +729,14 @@ namespace PaintApp
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    // Load the selected image into the drawPanel
+                    // load hình ảnh được chọn vào drawpanel
                     try
                     {
                         Bitmap loadedImage = new Bitmap(openFileDialog.FileName);
                         bm = new Bitmap(loadedImage);
                         g = Graphics.FromImage(bm);
                         drawPanel.Image = bm;
-                        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                        g.SmoothingMode = SmoothingMode.AntiAlias;
                         drawPanel.Invalidate();
                     }
                     catch (Exception ex)
@@ -722,32 +747,49 @@ namespace PaintApp
             }
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void newfile_Click(object sender, EventArgs e)      // new file
         {
-            if (e.Control && e.KeyCode == Keys.V)
+            if (bm != null)
             {
-                if (Clipboard.ContainsImage())
+                DialogResult result = MessageBox.Show("Bạn có muốn lưu những thay đổi của bạn?", "Save", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
                 {
-                    // Retrieve the image from the clipboard
-                    Image clipboardImage = Clipboard.GetImage();
+                    // lưu file trước khi tạo file mới
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.Filter = "Jpeg Image|*.jpg|Bitmap Image *.bmp|";
+                    saveFileDialog.Title = "Lưu lại tiến độ công việc của bạn";
 
-                    // Create a new Bitmap from the clipboard image
-                    Bitmap clipboardBitmap = new Bitmap(clipboardImage);
-
-                    // Paste the clipboard image onto the drawing panel
-                    using (Graphics g = Graphics.FromImage(bm))
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        g.DrawImage(clipboardBitmap, drawPanel.PointToClient(Cursor.Position));
-                    }
+                        string fileName = saveFileDialog.FileName;
 
-                    drawPanel.Invalidate();
+                        using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                        {
+                            switch (saveFileDialog.FilterIndex)
+                            {
+                                case 1:
+                                    bm.Save(fs, ImageFormat.Jpeg);
+                                    break;
+                                case 2:
+                                    bm.Save(fs, ImageFormat.Bmp);
+                                    break;
+                            }
+                        }
+                    }
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    // Nếu chọn cancle thì không làm gì cả
+                    return;
                 }
             }
-        }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            this.KeyDown += Form1_KeyDown;
+            // tạo bitmap mới và xóa bitmap hiện tại
+            bm = new Bitmap(drawPanel.Width, drawPanel.Height);
+            g = Graphics.FromImage(bm);
+            g.Clear(Color.White);
+            drawPanel.Image = bm;
         }
         //-------------------------------------------------------------------
     }
