@@ -1,0 +1,17 @@
+D:\learncode\code\C#\PaintApp\PaintApp\bin\Debug\net6.0-windows\PaintApp.exe
+D:\learncode\code\C#\PaintApp\PaintApp\bin\Debug\net6.0-windows\PaintApp.deps.json
+D:\learncode\code\C#\PaintApp\PaintApp\bin\Debug\net6.0-windows\PaintApp.runtimeconfig.json
+D:\learncode\code\C#\PaintApp\PaintApp\bin\Debug\net6.0-windows\PaintApp.dll
+D:\learncode\code\C#\PaintApp\PaintApp\bin\Debug\net6.0-windows\PaintApp.pdb
+D:\learncode\code\C#\PaintApp\PaintApp\obj\Debug\net6.0-windows\PaintApp.Form1.resources
+D:\learncode\code\C#\PaintApp\PaintApp\obj\Debug\net6.0-windows\PaintApp.csproj.GenerateResource.cache
+D:\learncode\code\C#\PaintApp\PaintApp\obj\Debug\net6.0-windows\PaintApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\learncode\code\C#\PaintApp\PaintApp\obj\Debug\net6.0-windows\PaintApp.AssemblyInfoInputs.cache
+D:\learncode\code\C#\PaintApp\PaintApp\obj\Debug\net6.0-windows\PaintApp.AssemblyInfo.cs
+D:\learncode\code\C#\PaintApp\PaintApp\obj\Debug\net6.0-windows\PaintApp.csproj.CoreCompileInputs.cache
+D:\learncode\code\C#\PaintApp\PaintApp\obj\Debug\net6.0-windows\PaintApp.dll
+D:\learncode\code\C#\PaintApp\PaintApp\obj\Debug\net6.0-windows\refint\PaintApp.dll
+D:\learncode\code\C#\PaintApp\PaintApp\obj\Debug\net6.0-windows\PaintApp.pdb
+D:\learncode\code\C#\PaintApp\PaintApp\obj\Debug\net6.0-windows\PaintApp.genruntimeconfig.cache
+D:\learncode\code\C#\PaintApp\PaintApp\obj\Debug\net6.0-windows\ref\PaintApp.dll
+D:\learncode\code\C#\PaintApp\PaintApp\obj\Debug\net6.0-windows\PaintApp.Properties.Resources.resources
