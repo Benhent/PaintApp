@@ -16,6 +16,8 @@ namespace PaintApp
         int index = 0;
         int x, y, sx, sy, cx, cy;
 
+        Stack<Bitmap> undoStack = new Stack<Bitmap>();
+
         private enum SelectedTool
         {
             Pencil,
@@ -30,8 +32,8 @@ namespace PaintApp
         public Form1()
         {
             InitializeComponent();
-            this.Width = 1500;
-            this.Height = 830;
+            this.Width = 1930;
+            this.Height = 1055;
             bm = new Bitmap(drawPanel.Width, drawPanel.Height);
             g = Graphics.FromImage(bm);
             g.Clear(Color.White);
@@ -48,6 +50,26 @@ namespace PaintApp
         }
 
 
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.Z)
+            {
+                // Ctrl+Z is pressed, perform undo
+                if (undoStack.Count > 0)
+                {
+                    // Clone the bitmap to avoid referencing the same object
+                    Bitmap previousState = new Bitmap(undoStack.Pop());
+
+                    // Update the current bitmap and graphics
+                    bm = new Bitmap(previousState);
+                    g = Graphics.FromImage(bm);
+
+                    // Update drawPanel
+                    drawPanel.Image = bm;
+                    drawPanel.Invalidate();
+                }
+            }
+        }
 
 
         // drawPanel------------------------------------------------------
@@ -94,6 +116,13 @@ namespace PaintApp
                     // vẽ
                     g.DrawPolygon(pen, new Point[] { vertex1, vertex2, vertex3 });
                 }
+            }
+
+
+            using (Graphics g = Graphics.FromImage(bm))
+            {
+                undoStack.Push(new Bitmap(bm)); // Push the new shape's bitmap to the undo stack
+                g.DrawImage(bm, Point.Empty); // Combine the new shape with the main bitmap
             }
 
             drawPanel.Invalidate();
@@ -243,13 +272,13 @@ namespace PaintApp
             }
             if (currentTool == SelectedTool.ColorPicker)    // color picker
             {
-                // Get the color of the pixel at the clicked position
+                // lấy màu ở điểm mà con chuột click vào
                 Color pickedColor = GetPixelColor((int)e.X, (int)e.Y);
 
-                // Set the picked color as the current drawing color
+                // chỉnh màu bút từ màu vừa pick
                 pen.Color = pickedColor;
 
-                // Update the color in the color picker tool
+                // update màu ở ô màu color
                 pictureBox1.BackColor = pickedColor;
             }
             if (currentTool == SelectedTool.Text)
